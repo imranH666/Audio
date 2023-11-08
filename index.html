@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Audiobook Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .audiobook-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .controls button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="audiobook-container">
+        <h1>Audiobook Title</h1>
+        <audio id="audiobook" controls>
+            <source src="audio/AAA The_Order's_Theme_-_Myuu(360p).mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="controls">
+            <button id="play-pause">Play</button>
+            <button id="stop">Stop</button>
+            <button id="rewind">Rewind 10s</button>
+            <button id="forward">Forward 10s</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById("audiobook");
+            const playPauseButton = document.getElementById("play-pause");
+            const stopButton = document.getElementById("stop");
+            const rewindButton = document.getElementById("rewind");
+            const forwardButton = document.getElementById("forward");
+
+            playPauseButton.addEventListener("click", function () {
+                if (audio.paused || audio.ended) {
+                    audio.play();
+                    playPauseButton.innerHTML = "Pause";
+                } else {
+                    audio.pause();
+                    playPauseButton.innerHTML = "Play";
+                }
+            });
+
+            stopButton.addEventListener("click", function () {
+                audio.pause();
+                audio.currentTime = 0;
+                playPauseButton.innerHTML = "Play";
+            });
+
+            rewindButton.addEventListener("click", function () {
+                audio.currentTime -= 10;
+            });
+
+            forwardButton.addEventListener("click", function () {
+                audio.currentTime += 10;
+            });
+        });
+
+    </script>
+</body>
+</html>
